@@ -12,6 +12,14 @@ describe('Comprobamos que funciona la gestion de fichero',() =>{
     const resultado = execSync(comando).toString().trim();
      
     })
+    it('añadimos una carta a la coleccion',() =>{
+        const comando = `node --experimental-modules dist/index.js add --user tests --id 99 --nombre "prueba" --coste 20 --color "azul" --tipo "Encantamiento" --rareza "comun" --texto "carta de prueba" --valor 10`;
+
+
+    // Ejecución del comando
+    const resultado = execSync(comando).toString().trim();
+     
+    })
     it('Mostrar las cartas de la coleccion',() =>{
         const comando = `node --experimental-modules dist/index.js list --user tests `;
 
