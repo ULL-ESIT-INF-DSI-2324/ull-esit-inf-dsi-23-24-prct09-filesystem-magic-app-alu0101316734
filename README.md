@@ -2,6 +2,14 @@
 
  __funcionamiento:__ `node --experimental-modules dist/index.js [comando] [opciones del comando]`
 
+# Badge
+
+[![Tests](https://github.com/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-alu0101316734/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-alu0101316734/actions/workflows/node.js.yml)
+
+[![Coveralls](https://github.com/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-alu0101316734/actions/workflows/coveralls.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-alu0101316734/actions/workflows/coveralls.yml)
+
+[![Sonar-Cloud](https://github.com/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-alu0101316734/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-alu0101316734/actions/workflows/sonarcloud.yml)
+
 ## Introdución
 
 con el objetivo de usar la API dada de nodejs en esta practica aprederemos a usar la gestión de fichero de esta misma.Cabe recalcar que solo se usara la parte sincrona de esta.Además usaremos los paquetes chalk y yargs.Y por supeusto seguiremos la metodolgía `TDD` y usaremos `c8` y `coveralls` para el cubrimiento del codigo y para comprobar la calidad de dicho codigo ultilizaremos `SonarCloud`.
