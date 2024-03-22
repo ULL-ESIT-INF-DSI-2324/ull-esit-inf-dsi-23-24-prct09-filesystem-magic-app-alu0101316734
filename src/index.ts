@@ -188,27 +188,27 @@ if(argv._[2] === "add")
 if(argv.lealtad === undefined && argv.tipo === "Planeswalker")
 {
    /**@throws devolvemos error si no se añade lealtad a los Planeswalker */
-  console.error("los planeswalker tiene que tener una lealtad");
+  console.error(chalk.red("los planeswalker tiene que tener una lealtad"));
   exit(1)
 }
 if(argv.lealtad !== undefined && argv.tipo !== "Planeswalker")
 {
 /**@throws devolvemos error si  se añade lealtad a los que no son Planeswalker */
-  console.error("solo los planeswalker tiene que tener una lealtad");
+  console.error(chalk.red("solo los planeswalker tiene que tener una lealtad"));
   exit(1)
 }
 
 if(argv.estadistica !== undefined && argv.tipo !== "Criatura")
 {
 /**@throws devolvemos error si no se añade estadistica a las Criaturas */
-  console.error("solo las criaturas tiene que tener fuerza y vida");    
+  console.error(chalk.red("solo las criaturas tiene que tener fuerza y vida"));    
   exit(1)
 }
 
 if(argv.estadistica === undefined && argv.tipo === "Criatura")
 {
 /**@throws devolvemos error si se añade estadistica a las que no son Criaturas */
-  console.error("las criaturas tiene que tener fuerza y vida");    
+  console.error(chalk.red("las criaturas tiene que tener fuerza y vida"));    
   exit(1)
 }
 const path = './usuarios/' + argv.user
@@ -254,15 +254,12 @@ else
    }
 if(!fs.existsSync(pathfile))
 {
-    try{
         fs.writeFileSync(pathfile,jsonData)
-        console.log(chalk.green("se ha creado la carta correctamente"))
-    }
-    catch(error)
-    {
-        console.error('directorio no creado');
-        exit(1);
-    }
+        console.log(chalk.green("se ha creado la carta correctamente"))  
+}else
+{
+   console.error(chalk.red('directorio no creado'));
+   exit(1);  
 }
 }
 // Listar 
@@ -350,7 +347,6 @@ if(argvdelete1._[2] === "delete")
     {
       
       const pathfile = path + '/' + datos.nombre + '.json';
-      console.log(pathfile)
       fs.unlinkSync(pathfile);
       console.log(chalk.green("Se ha eliminado la carta"))
       encontrado=true
