@@ -2,14 +2,13 @@ import { exit } from "process";
 import fs from "fs"
 import yargs from "yargs"
 import chalk from "chalk";
-import { Carta_Criatura } from "./Cartas/Carta_Criatura.js";
+import { Carta_Criatura,stats } from "./Cartas/Carta_Criatura.js";
 import { Carta } from "./Cartas/Carta.js";
-import { stats} from "./Cartas/Carta_Criatura.js"
 import { Cartas_Planeswalker } from "./Cartas/Carta_Planeswalker.js";
-import { BlobOptions } from "buffer";
 
-
-
+/**
+ * @package Usando __yargs__ para añdadir por coleccion
+ */
  const argv= await yargs(process.argv)
 .command('add','añade una carta a la coleccion',{
  user:{
@@ -70,6 +69,9 @@ import { BlobOptions } from "buffer";
 .argv;
 //Listar
 
+/**
+ * @package Usando __yargs__ para listar la coleccion
+ */
 const argvlist =await yargs(process.argv)
 .command('list','Listar las  cartas de su coleccion',{
   user:{
@@ -80,6 +82,9 @@ const argvlist =await yargs(process.argv)
 })
 .argv
 //Mostrar
+/**
+ * @package  Usando __yargs__ para buscar una carta de la coleccion
+ * */ 
 const argvsearch =await yargs(process.argv)
 .command('search','Busca una carta de la coleccion',{
   user:{
@@ -95,6 +100,9 @@ const argvsearch =await yargs(process.argv)
 })
 .argv
 //Eliminar
+/**
+ * @package  Usando __yargs__ para eliminar una carta de la coleccion
+ */
 const argvdelete =await yargs(process.argv)
 .command('delete','Eliminar una carta de la coleccion',{
    user:{
@@ -110,7 +118,10 @@ const argvdelete =await yargs(process.argv)
  })
  .argv
 //Modificar
- const argvmod = yargs(process.argv)
+/**
+ * @package  Usando __yargs__ para modificar una carta de la coleccion
+ */
+ const argvmod = await yargs(process.argv)
 .command('modify','modifica una carta',{
    user:{
       description: 'usuario',
@@ -168,31 +179,37 @@ const argvlist1=argv;
 const argvsearch1=argv;
 const argvdelete1=argv; 
 const argvmod1=argv;
+/**@summary al usar add entramos en este condicional */
 if(argv._[2] === "add")
 {
 if(argv.lealtad === undefined && argv.tipo === "Planeswalker")
 {
+   /**@throws devolvemos error si no se añade lealtad a los Planeswalker */
   console.error("los planeswalker tiene que tener una lealtad");
   exit(1)
 }
 if(argv.lealtad !== undefined && argv.tipo !== "Planeswalker")
 {
+/**@throws devolvemos error si  se añade lealtad a los que no son Planeswalker */
   console.error("solo los planeswalker tiene que tener una lealtad");
   exit(1)
 }
 
 if(argv.estadistica !== undefined && argv.tipo !== "Criatura")
 {
+/**@throws devolvemos error si no se añade estadistica a las Criaturas */
   console.error("solo las criaturas tiene que tener fuerza y vida");    
   exit(1)
 }
 
 if(argv.estadistica === undefined && argv.tipo === "Criatura")
 {
+/**@throws devolvemos error si se añade estadistica a las que no son Criaturas */
   console.error("las criaturas tiene que tener fuerza y vida");    
   exit(1)
 }
 const path = './usuarios/' + argv.user
+/**@constant path si no existe el direcotrio lo creamos */
 if(!fs.existsSync(path))
 {
     try{
@@ -204,6 +221,7 @@ if(!fs.existsSync(path))
         exit(1)
     }
 }
+/**@constant filename la ruta del archivo */
 const filename = argv.nombre + '.json'
 const pathfile= path + '/' +filename
 //criatura
@@ -245,9 +263,11 @@ if(!fs.existsSync(pathfile))
 }
 }
 // Listar 
+/**@constant argvlist1 lo usaremos en caso de recibir un parametro list */
 if(argvlist1._[2] === "list")
 {
     const path="./usuarios/" + argvlist1.user;
+    /**@constant archivos son los contenidos del directorio creado anteriormente */
     const archivos =fs.readdirSync(path);
     archivos.forEach(archivo =>{
       const contenido = fs.readFileSync(path+'/'+archivo).toString()
@@ -273,6 +293,7 @@ if(argvlist1._[2] === "list")
 }
 
 //Mostrar la coleccion de cartas
+/**@constant argvsearch1 lo ultlizaremos en el caso de querer buscar un archivo */
 if(argvsearch1._[2] === "search")
 {
     const path="./usuarios/" + argvsearch1.user;
@@ -312,6 +333,7 @@ if(argvsearch1._[2] === "search")
 }
 
 //Eliminar una carta
+/**@constant los usaremos en el caso de querer eliminar un fichero */
 if(argvdelete1._[2] === "delete")
 {
 
@@ -338,6 +360,8 @@ if(argvdelete1._[2] === "delete")
    }
 }
 
+
+/**@constant argvmod1 lo usaremos en el caso de querer modificar uno de los archivos anteriores */
 if(argvmod1._[2] === "modify")
 {
   const path = './usuarios/' + argvmod1.user
@@ -385,6 +409,7 @@ if(argvmod1._[2] === "modify")
      console.log(chalk.green("se ha modificado la carta correctamente"))
     }
   })
+  /**@var encontrado en caso de no encotrar el fichero buscado devovemos error */
   if(!encontrado)
      console.error(chalk.red('Carta no encontrada'));
 }
