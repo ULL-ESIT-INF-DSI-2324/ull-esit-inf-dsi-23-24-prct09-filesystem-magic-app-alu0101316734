@@ -36,4 +36,4 @@ class Carta implements Carta_interface
 
 La clase su principalfuncion es almacenar los atributos pasados por constructor y una vez hecho esto definir un `toJSON` para pasar el formato _JSON_.
 
-En cuanto a
+En cuanto a otras clases tenemos 2 clases 

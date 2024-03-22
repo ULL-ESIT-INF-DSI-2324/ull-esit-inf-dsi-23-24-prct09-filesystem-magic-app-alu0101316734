@@ -6,9 +6,12 @@ import { Carta_Criatura,stats } from "./Cartas/Carta_Criatura.js";
 import { Carta } from "./Cartas/Carta.js";
 import { Cartas_Planeswalker } from "./Cartas/Carta_Planeswalker.js";
 
+
+
 /**
  * @package Usando __yargs__ para añdadir por coleccion
  */
+
  const argv= await yargs(process.argv)
 .command('add','añade una carta a la coleccion',{
  user:{
@@ -413,3 +416,4 @@ if(argvmod1._[2] === "modify")
   if(!encontrado)
      console.error(chalk.red('Carta no encontrada'));
 }
+
