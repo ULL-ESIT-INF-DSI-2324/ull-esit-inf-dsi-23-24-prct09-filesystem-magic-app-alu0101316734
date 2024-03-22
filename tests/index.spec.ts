@@ -1,9 +1,9 @@
 import "mocha"
-import "sinon"
 import yargs from "yargs"
 import {expect} from "chai"
 import{execSync} from "child_process"
 describe('Comprobamos que funciona la gestion de fichero',() =>{
+    execSync('tsc')
     it('añadimos una carta a la coleccion',() =>{
         const comando = `node --experimental-modules dist/index.js add --user tests --id 99 --nombre "prueba" --coste 20 --color "azul" --tipo "Criatura" --rareza "comun" --texto "carta de prueba" --valor 10 --estadistica [2,3]`;
 
