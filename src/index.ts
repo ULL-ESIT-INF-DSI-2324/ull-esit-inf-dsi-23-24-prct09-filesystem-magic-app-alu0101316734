@@ -346,7 +346,7 @@ if(argvmod1._[2] === "modify")
  
   archivos.forEach(archivo =>{
    const contenido = fs.readFileSync(path+'/'+archivo).toString()
-   let datos=JSON.parse(contenido);     
+   const datos=JSON.parse(contenido);     
     if(argvmod1.idmod === datos.id)
     {
       encontrado=true;
